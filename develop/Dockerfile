@@ -21,7 +21,7 @@ ENV NPM_VERSION 2.5.0
 ENV PATH /app/bin:/usr/local/go/bin:$PATH
 
 RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install -y gcc libc6-dev make --no-install-recommends \
+	&& apt-get install -y gcc libc6-dev make inotify-tools --no-install-recommends \
 	&& apt-get --purge autoremove -y \
 	&& apt-get clean all \
 	&& rm -rf /var/lib/apt/lists/*
