@@ -21,7 +21,9 @@ ENV NPM_VERSION 2.5.0
 ENV PATH /app/bin:/usr/local/go/bin:$PATH
 
 RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install -y gcc libc6-dev make inotify-tools --no-install-recommends \
+	&& apt-get install -y gcc libc6-dev make inotify-tools \
+		supervisor --no-install-recommends \
+	&& apt-get install -y  \
 	&& apt-get --purge autoremove -y \
 	&& apt-get clean all \
 	&& rm -rf /var/lib/apt/lists/*
@@ -44,3 +46,12 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 RUN mkdir -p /app/src
 ENV GOPATH /app
 WORKDIR /app
+
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+
+RUN mkdir -p /app/src/github.com/crowley-io/ \
+	&& cd /app/src/github.com/crowley-io/ \
+	&& git clone --depth 1 --branch master --single-branch https://github.com/crowley-io/assets.git
+
+#CMD ["/usr/bin/supervisord"]
+CMD ["/bin/bash"]
