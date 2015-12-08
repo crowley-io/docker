@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Fail hard and fast
+set -eo pipefail
+
+cd ${CROWLEY_PACK_DIRECTORY}
+npm install
+npm run build
+npm test
+npm prune --production
+tar --exclude='*.tar.gz' --exclude='Dockerfile' --exclude='packer.yml' \
+  --ignore-failed-read -zcf ${CROWLEY_PACK_OUTPUT} .
+
+chown ${CROWLEY_PACK_USER}:${CROWLEY_PACK_GROUP} ${CROWLEY_PACK_OUTPUT}
