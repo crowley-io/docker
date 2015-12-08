@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Fail hard and fast
+set -eo pipefail
+
+cd ${CROWLEY_PACK_DIRECTORY}
+go get -d -t -v ./...
+golint ./...
+go vet -a -v
+go build -v -o  ${CROWLEY_PACK_OUTPUT}
+go test -v ./...
+chown ${CROWLEY_PACK_USER}:${CROWLEY_PACK_GROUP} ${CROWLEY_PACK_OUTPUT}
