@@ -1,0 +1,9 @@
+#!/bin/bash
+
+REGISTRY_PATH=/bin/registry
+PAX_FLAGS="m"
+
+# Set file attributes for PaX
+setfattr -n user.pax.flags -v ${PAX_FLAGS} ${REGISTRY_PATH}
+
+${REGISTRY_PATH} $@
