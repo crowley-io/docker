@@ -8,7 +8,7 @@
 
 # VERSION 0.1.0
 
-FROM node:5.1.1
+FROM node:5.5.0
 
 MAINTAINER november-eleven
 
