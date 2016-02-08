@@ -8,7 +8,7 @@
 
 # VERSION 0.1.0
 
-FROM golang:1.5.2
+FROM golang:1.5.3
 
 MAINTAINER november-eleven
 

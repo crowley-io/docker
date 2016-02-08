@@ -22,5 +22,5 @@ Make contributions the usual way through [GitHub](https://github.com/crowley-io/
 
 ### Version
 
-* **debian:** 8.2
-* **go:** 1.5.2
+* **debian:** 8.3
+* **go:** 1.5.3
